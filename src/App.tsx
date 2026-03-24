@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Landing } from '@/pages/Landing'
 import { Auth } from '@/pages/Auth'
 import { Dashboard } from '@/pages/Dashboard'
@@ -17,8 +17,10 @@ const Metrics = lazy(
 )
 
 export default function App() {
+  const Router = import.meta.env.BASE_URL === '/PeptideMAXX/' ? HashRouter : BrowserRouter
+
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/auth" element={<Auth />} />
@@ -45,6 +47,6 @@ export default function App() {
           />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </Router>
   )
 }
