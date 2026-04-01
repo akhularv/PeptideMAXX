@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Plus, Trash2 } from 'lucide-react'
-import { BioSpecimen } from '@/components/layout/BioSpecimen'
 import { compounds } from '@/lib/compounds'
 import { useLog } from '@/hooks/useLog'
 
@@ -60,8 +59,7 @@ function LogFormModal({
         position: 'fixed',
         inset: 0,
         zIndex: 40,
-        background: 'rgba(4, 8, 14, 0.72)',
-        backdropFilter: 'blur(10px)',
+        background: 'rgba(77, 49, 35, 0.36)',
         display: 'grid',
         placeItems: 'center',
         padding: 24,
@@ -376,7 +374,27 @@ export function Log() {
         </section>
 
         <aside className="atlas-panel atlas-panel--soft atlas-sticky-rail" style={{ padding: 22 }}>
-          <BioSpecimen size="sm" label="Protocol field" style={{ margin: '0 auto 18px' }} />
+          {/* "Protocol field" header with teal dot — replaces BioSpecimen */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8,
+              marginBottom: 18,
+            }}
+          >
+            <span
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: '50%',
+                background: 'var(--accent)',
+                boxShadow: '0 0 10px rgba(176,84,43,0.3)',
+                flexShrink: 0,
+              }}
+            />
+            <span className="atlas-label">Protocol field</span>
+          </div>
 
           <div className="atlas-grid-strip">
             <MetricTile label="Entries" value={String(entries.length)} />

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { compounds } from '@/lib/compounds'
 import type { Compound } from '@/types/compound'
-import { BioSpecimen } from '@/components/layout/BioSpecimen'
 
 type CategoryFilter = 'all' | 'peptide' | 'nootropic' | 'compound'
 type EvidenceFilter = 'all' | 'clinical' | 'preclinical' | 'anecdotal'
@@ -50,7 +49,7 @@ function CompoundStrip({
         width: '100%',
         textAlign: 'left',
         padding: active ? '20px 0 18px' : '18px 0',
-        borderBottom: '1px solid rgba(147,246,216,0.08)',
+        borderBottom: '1px solid rgba(176,84,43,0.08)',
         background: 'transparent',
         cursor: 'pointer',
       }}
@@ -267,12 +266,27 @@ export function Library() {
         <aside className="atlas-panel atlas-panel--soft atlas-sticky-rail" style={{ padding: 22 }}>
           {selectedCompound ? (
             <>
-              <BioSpecimen
-                size="sm"
-                label={selectedCompound.evidenceTier}
-                accent={EVIDENCE_COLORS[selectedCompound.evidenceTier]}
-                style={{ margin: '4px auto 18px' }}
-              />
+              {/* Evidence indicator dot — replaces BioSpecimen */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  marginBottom: 18,
+                }}
+              >
+                <span
+                  style={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: '50%',
+                    background: EVIDENCE_COLORS[selectedCompound.evidenceTier],
+                    boxShadow: `0 0 12px ${EVIDENCE_COLORS[selectedCompound.evidenceTier]}66`,
+                    flexShrink: 0,
+                  }}
+                />
+                <span className="atlas-label">{selectedCompound.evidenceTier}</span>
+              </div>
 
               <div className="atlas-kicker" style={{ marginBottom: 12 }}>
                 Active dossier

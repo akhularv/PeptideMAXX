@@ -1,28 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #081018;
-  --bg-deep: #050b11;
-  --bg-soft: #0d1721;
-  --panel: rgba(9, 18, 29, 0.84);
-  --panel-strong: rgba(10, 20, 31, 0.94);
-  --panel-edge: rgba(169, 242, 226, 0.14);
-  --panel-line: rgba(169, 242, 226, 0.22);
-  --text: #eff5ef;
-  --text-dim: #d2ddda;
-  --muted: #91a29f;
-  --soft: #25383a;
-  --accent: #93f6d8;
-  --accent-strong: #59e2d2;
-  --accent-cool: #8cc4ff;
-  --accent-warm: #f2bf74;
-  --danger: #f1746d;
-  --display: 'Neue Haas Grotesk Display Pro', 'Neue Haas Grotesk Text Pro', 'Neue Haas Unica',
-    'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --ui: 'Neue Haas Grotesk Text Pro', 'Neue Haas Grotesk Display Pro', 'Neue Haas Unica',
-    'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --mono: 'Neue Haas Grotesk Text Pro', 'Neue Haas Grotesk Display Pro', 'Neue Haas Unica',
-    'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --bg: #080A0C;
+  --bg-deep: #050709;
+  --bg-soft: #0E1116;
+  --panel: rgba(13, 16, 21, 0.96);
+  --panel-edge: rgba(255, 255, 255, 0.06);
+  --panel-line: rgba(255, 255, 255, 0.10);
+  --text: #F4F6F4;
+  --text-dim: #C4CCCA;
+  --muted: #7A8A87;
+  --accent: #7DF0C8;
+  --accent-strong: #4EDDB5;
+  --accent-cool: #7ABFFF;
+  --accent-warm: #E8C97A;
+  --danger: #E85858;
+  --display: Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --ui: Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --mono: 'Fira Code', 'JetBrains Mono', monospace;
   --nav-h: 68px;
   color-scheme: dark;
 }
@@ -103,10 +98,10 @@ body {
   margin: 0;
   min-width: 320px;
   background:
-    radial-gradient(circle at top left, rgba(147, 246, 216, 0.14), transparent 28%),
-    radial-gradient(circle at 82% 12%, rgba(140, 196, 255, 0.14), transparent 22%),
-    radial-gradient(circle at 50% 120%, rgba(242, 191, 116, 0.08), transparent 34%),
-    linear-gradient(180deg, #09111a 0%, #060b11 100%);
+    radial-gradient(circle at 18% 22%, rgba(125,240,200,0.025), transparent 24%),
+    radial-gradient(circle at 78% 14%, rgba(122,191,255,0.02), transparent 18%),
+    radial-gradient(circle at 54% 100%, rgba(232,201,122,0.016), transparent 26%),
+    #080A0C;
   color: var(--text);
   font-family: var(--ui);
   -webkit-font-smoothing: antialiased;
@@ -120,11 +115,11 @@ body::before {
   pointer-events: none;
   z-index: 0;
   background-image:
-    linear-gradient(rgba(147, 246, 216, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(147, 246, 216, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(125, 240, 200, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125, 240, 200, 0.04) 1px, transparent 1px);
   background-size: 100% 112px, 112px 100%;
   mask-image: radial-gradient(circle at center, black, transparent 92%);
-  opacity: 0.16;
+  opacity: 0.1;
 }
 
 body::after {
@@ -133,7 +128,7 @@ body::after {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.035;
+  opacity: 0.028;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -147,8 +142,8 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--display);
-  font-weight: 600;
+  font-family: var(--ui);
+  font-weight: 700;
   letter-spacing: -0.03em;
 }
 
@@ -172,7 +167,7 @@ canvas {
 }
 
 ::selection {
-  background: rgba(147, 246, 216, 0.18);
+  background: rgba(125, 240, 200, 0.18);
   color: var(--text);
 }
 
@@ -182,7 +177,7 @@ canvas {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(147, 246, 216, 0.18);
+  background: rgba(125, 240, 200, 0.14);
   border-radius: 999px;
 }
 
@@ -191,7 +186,8 @@ canvas {
 }
 
 .font-orbitron {
-  font-family: var(--display);
+  font-family: Inter, sans-serif;
+  font-weight: 800;
 }
 
 .font-fira {
@@ -199,7 +195,8 @@ canvas {
 }
 
 .font-syne {
-  font-family: var(--display);
+  font-family: Inter, sans-serif;
+  font-weight: 800;
 }
 
 .atlas-page {
@@ -233,14 +230,12 @@ canvas {
 .atlas-panel {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(180deg, rgba(12, 22, 31, 0.94), rgba(8, 15, 23, 0.94));
+  background: var(--panel);
   border: 1px solid var(--panel-edge);
-  border-radius: 28px;
+  border-radius: 16px;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.03),
-    0 26px 90px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 24px 70px rgba(0, 0, 0, 0.32);
 }
 
 .atlas-panel::before {
@@ -250,15 +245,15 @@ canvas {
   right: 24px;
   top: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(147, 246, 216, 0.46), transparent);
+  background: linear-gradient(90deg, transparent, rgba(125, 240, 200, 0.08), transparent);
 }
 
 .atlas-panel--soft {
-  background: linear-gradient(180deg, rgba(13, 24, 34, 0.84), rgba(8, 15, 23, 0.72));
+  background: rgba(18, 22, 28, 0.92);
 }
 
 .atlas-panel--clear {
-  background: rgba(7, 13, 19, 0.26);
+  background: rgba(13, 16, 21, 0.72);
 }
 
 .atlas-kicker {
@@ -298,8 +293,8 @@ canvas {
   gap: 8px;
   padding: 7px 12px;
   border-radius: 999px;
-  border: 1px solid rgba(147, 246, 216, 0.14);
-  background: rgba(147, 246, 216, 0.05);
+  border: 1px solid rgba(125, 240, 200, 0.12);
+  background: rgba(125, 240, 200, 0.05);
   font-family: var(--ui);
   font-size: 10.5px;
   font-weight: 500;
@@ -310,14 +305,14 @@ canvas {
 }
 
 .atlas-chip--active {
-  color: #071019;
-  background: linear-gradient(135deg, var(--accent), #d5fff2);
+  color: #080A0C;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
   border-color: transparent;
 }
 
 .atlas-divider {
   height: 1px;
-  background: linear-gradient(90deg, rgba(147, 246, 216, 0.2), transparent);
+  background: linear-gradient(90deg, rgba(125, 240, 200, 0.12), transparent);
 }
 
 .atlas-button-primary,
@@ -339,8 +334,8 @@ canvas {
 }
 
 .atlas-button-primary {
-  background: linear-gradient(135deg, #d2ffef, var(--accent));
-  color: #071019;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #080A0C;
   font-family: var(--ui);
   font-size: 11px;
   font-weight: 500;
@@ -349,8 +344,8 @@ canvas {
 }
 
 .atlas-button-secondary {
-  border: 1px solid rgba(147, 246, 216, 0.14);
-  background: rgba(147, 246, 216, 0.03);
+  border: 1px solid rgba(125, 240, 200, 0.14);
+  background: rgba(125, 240, 200, 0.06);
   color: var(--text);
   font-family: var(--ui);
   font-size: 11px;
@@ -368,9 +363,9 @@ canvas {
 .atlas-textarea,
 .atlas-select {
   width: 100%;
-  border: 1px solid rgba(147, 246, 216, 0.12);
-  border-radius: 18px;
-  background: rgba(7, 15, 23, 0.9);
+  border: 1px solid rgba(125, 240, 200, 0.10);
+  border-radius: 16px;
+  background: rgba(13, 16, 21, 0.92);
   color: var(--text);
   padding: 16px 18px;
   font-size: 15px;
@@ -381,8 +376,8 @@ canvas {
 .atlas-input:focus,
 .atlas-textarea:focus,
 .atlas-select:focus {
-  border-color: rgba(147, 246, 216, 0.44);
-  box-shadow: 0 0 0 4px rgba(147, 246, 216, 0.08);
+  border-color: rgba(125, 240, 200, 0.40);
+  box-shadow: 0 0 0 4px rgba(125, 240, 200, 0.08);
 }
 
 .atlas-input::placeholder,
@@ -423,11 +418,11 @@ canvas {
   background:
     radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.86), transparent 28%),
     radial-gradient(circle at 50% 50%, var(--specimen-accent), transparent 64%),
-    linear-gradient(135deg, rgba(147, 246, 216, 0.32), rgba(140, 196, 255, 0.2));
-  border: 1px solid rgba(255, 255, 255, 0.08);
+    linear-gradient(135deg, rgba(125, 240, 200, 0.16), rgba(122, 191, 255, 0.12));
+  border: 1px solid rgba(125, 240, 200, 0.08);
   box-shadow:
-    inset 0 -20px 46px rgba(0, 0, 0, 0.2),
-    0 0 120px rgba(147, 246, 216, 0.22);
+    inset 0 -20px 46px rgba(0, 0, 0, 0.28),
+    0 0 60px rgba(125, 240, 200, 0.08);
 }
 
 .atlas-specimen__ring,
@@ -438,20 +433,21 @@ canvas {
 }
 
 .atlas-specimen__ring {
-  border: 1px solid rgba(147, 246, 216, 0.16);
+  border: 1px solid rgba(125, 240, 200, 0.10);
 }
 
 .atlas-specimen__ring::before {
   content: '';
   inset: 12%;
-  border: 1px solid rgba(140, 196, 255, 0.18);
+  border: 1px solid rgba(122, 191, 255, 0.10);
 }
 
 .atlas-specimen__orbit {
+  /* orbit ring retained in CSS for legacy use but not rendered by component */
   position: absolute;
   inset: -8%;
   border-radius: 50%;
-  border: 1px dashed rgba(147, 246, 216, 0.12);
+  border: 1px dashed rgba(125, 240, 200, 0.08);
   animation: orbit 18s linear infinite;
 }
 
@@ -468,7 +464,7 @@ canvas {
   top: 10%;
   left: 18%;
   background: var(--specimen-accent);
-  box-shadow: 0 0 24px rgba(147, 246, 216, 0.4);
+  box-shadow: 0 0 24px rgba(125, 240, 200, 0.22);
 }
 
 .atlas-specimen__orbit::after {
@@ -476,17 +472,18 @@ canvas {
   height: 12px;
   right: 12%;
   bottom: 22%;
-  background: rgba(140, 196, 255, 0.9);
-  box-shadow: 0 0 20px rgba(140, 196, 255, 0.36);
+  background: rgba(125, 240, 200, 0.70);
+  box-shadow: 0 0 20px rgba(125, 240, 200, 0.18);
 }
 
 .atlas-specimen__halo {
+  /* halo retained in CSS for legacy use but not rendered by component */
   position: absolute;
   inset: -18%;
   border-radius: 50%;
   background:
-    radial-gradient(circle, rgba(147, 246, 216, 0.22) 0%, transparent 48%),
-    radial-gradient(circle at 65% 40%, rgba(140, 196, 255, 0.18), transparent 28%);
+    radial-gradient(circle, rgba(125, 240, 200, 0.10) 0%, transparent 48%),
+    radial-gradient(circle at 65% 40%, rgba(122, 191, 255, 0.10), transparent 28%);
   filter: blur(28px);
 }
 
@@ -496,8 +493,8 @@ canvas {
   bottom: 18%;
   padding: 8px 12px;
   border-radius: 999px;
-  border: 1px solid rgba(147, 246, 216, 0.16);
-  background: rgba(7, 15, 23, 0.8);
+  border: 1px solid rgba(125, 240, 200, 0.10);
+  background: rgba(13, 16, 21, 0.88);
   font-family: var(--ui);
   font-size: 10px;
   font-weight: 500;
@@ -514,13 +511,13 @@ canvas {
 
 .atlas-readout {
   padding: 20px 22px;
-  border-radius: 20px;
-  border: 1px solid rgba(147, 246, 216, 0.1);
-  background: rgba(7, 15, 23, 0.74);
+  border-radius: 16px;
+  border: 1px solid rgba(125, 240, 200, 0.06);
+  background: rgba(13, 16, 21, 0.72);
 }
 
 .atlas-readout:hover {
-  border-color: rgba(147, 246, 216, 0.22);
+  border-color: rgba(125, 240, 200, 0.12);
 }
 
 .atlas-readout__value {
@@ -610,7 +607,7 @@ canvas {
   }
 
   .atlas-panel {
-    border-radius: 22px;
+    border-radius: 14px;
   }
 
   .atlas-specimen--lg {

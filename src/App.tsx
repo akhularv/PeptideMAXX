@@ -15,6 +15,9 @@ import { ProtectedRoute } from '@/components/layout/ProtectedRoute'
 const Metrics = lazy(
   () => import('@/pages/Metrics').then((m) => ({ default: m.Metrics }))
 )
+const Trends = lazy(
+  () => import('@/pages/Trends').then((m) => ({ default: m.Trends }))
+)
 
 export default function App() {
   const Router = import.meta.env.BASE_URL === '/PeptideMAXX/' ? HashRouter : BrowserRouter
@@ -39,9 +42,16 @@ export default function App() {
           <Route
             path="metrics"
             element={
-              // Suspense wraps only the lazy Metrics chunk; Dashboard shell stays mounted
               <Suspense fallback={null}>
                 <Metrics />
+              </Suspense>
+            }
+          />
+          <Route
+            path="trends"
+            element={
+              <Suspense fallback={null}>
+                <Trends />
               </Suspense>
             }
           />

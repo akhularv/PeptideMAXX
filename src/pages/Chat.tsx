@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
-import { BioSpecimen } from '@/components/layout/BioSpecimen'
 import { compounds } from '@/lib/compounds'
 import { useChat } from '@/hooks/useChat'
 import { useUserStore } from '@/store/useUserStore'
@@ -36,7 +35,7 @@ function TranscriptBlock({
       transition={{ duration: 0.24, ease: 'easeOut' }}
       className="atlas-readout"
       style={{
-        background: role === 'assistant' ? 'rgba(7, 15, 23, 0.72)' : 'rgba(9, 18, 29, 0.92)',
+        background: role === 'assistant' ? 'rgba(255, 249, 241, 0.9)' : 'rgba(246, 234, 222, 0.9)',
         marginLeft: role === 'user' ? '28px' : 0,
         marginRight: role === 'assistant' ? '28px' : 0,
         maxWidth: '84ch',
@@ -190,7 +189,7 @@ export function Chat() {
           ) : null}
 
           {error ? (
-            <div className="atlas-readout" style={{ borderColor: 'rgba(241,116,109,0.2)' }}>
+            <div className="atlas-readout" style={{ borderColor: 'rgba(158,71,51,0.24)' }}>
               <div className="atlas-kicker" style={{ color: 'var(--danger)', marginBottom: 8 }}>
                 Consultation issue
               </div>
@@ -240,7 +239,27 @@ export function Chat() {
               className="atlas-panel atlas-panel--soft"
               style={{ padding: 22, maxHeight: 'min(66vh, 780px)', overflowY: 'auto' }}
             >
-              <BioSpecimen size="sm" label="Consult field" style={{ margin: '0 auto 18px' }} />
+              {/* "Consult field active" header with teal dot — replaces BioSpecimen */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  marginBottom: 18,
+                }}
+              >
+                <span
+                  style={{
+                    width: 8,
+                    height: 8,
+                    borderRadius: '50%',
+                    background: 'var(--accent)',
+                    boxShadow: '0 0 10px rgba(176,84,43,0.3)',
+                    flexShrink: 0,
+                  }}
+                />
+                <span className="atlas-label">Consult field active</span>
+              </div>
               <div className="atlas-kicker" style={{ marginBottom: 12 }}>
                 Recent protocol context
               </div>

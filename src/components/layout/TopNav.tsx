@@ -25,8 +25,8 @@ export function TopNav() {
       <div
         className="atlas-panel atlas-panel--soft atlas-topnav__inner"
         style={{
-          background: '#080A0C',
-          borderColor: 'rgba(255,255,255,0.06)',
+          background: 'rgba(255, 249, 241, 0.92)',
+          borderColor: 'rgba(114,82,61,0.12)',
           minHeight: 'var(--nav-h)',
           padding: '12px 18px',
           display: 'flex',
@@ -41,19 +41,18 @@ export function TopNav() {
               width: 36,
               height: 36,
               borderRadius: '50%',
-              border: '1px solid rgba(125,240,200,0.18)',
+              border: '1px solid rgba(176,84,43,0.18)',
               background:
-                'radial-gradient(circle at 35% 35%, rgba(255,255,255,0.88), transparent 22%), radial-gradient(circle at 50% 50%, rgba(125,240,200,0.7), transparent 62%), rgba(8,10,12,0.9)',
-              // Reduced glow — teal on interactives only
-              boxShadow: '0 0 24px rgba(125,240,200,0.12)',
+                'radial-gradient(circle at 35% 35%, rgba(255,250,243,0.96), transparent 22%), radial-gradient(circle at 50% 50%, rgba(176,84,43,0.66), transparent 62%), rgba(255,246,235,0.92)',
+              boxShadow: '0 0 24px rgba(176,84,43,0.14)',
               flexShrink: 0,
             }}
           />
           <div>
             <div
               style={{
-                fontFamily: 'var(--display)',
-                fontWeight: 600,
+                fontFamily: 'Inter, sans-serif',
+                fontWeight: 800,
                 fontSize: 13,
                 letterSpacing: '-0.02em',
                 color: 'var(--text)',
@@ -84,9 +83,9 @@ export function TopNav() {
                 padding: '10px 14px',
                 borderRadius: '999px',
                 border: isActive
-                  ? '1px solid rgba(125,240,200,0.26)'
+                  ? '1px solid rgba(176,84,43,0.24)'
                   : '1px solid transparent',
-                background: isActive ? 'rgba(125,240,200,0.08)' : 'transparent',
+                background: isActive ? 'rgba(176,84,43,0.08)' : 'transparent',
                 color: isActive ? 'var(--text)' : 'var(--text-dim)',
                 textDecoration: 'none',
                 fontFamily: 'var(--mono)',
@@ -107,8 +106,8 @@ export function TopNav() {
             style={{
               padding: '9px 12px',
               borderRadius: '999px',
-              border: '1px solid rgba(125,240,200,0.12)',
-              background: 'rgba(8,10,12,0.72)',
+              border: '1px solid rgba(176,84,43,0.12)',
+              background: 'rgba(255,248,239,0.72)',
               minWidth: 160,
             }}
           >

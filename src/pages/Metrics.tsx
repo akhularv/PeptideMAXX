@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { LineChart, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { useMetrics } from '@/hooks/useMetrics'
 import { useUserStore } from '@/store/useUserStore'
-import { BioSpecimen } from '@/components/layout/BioSpecimen'
 
 function distinctDates(logs: { date: string }[]) {
   return new Set(logs.map((log) => log.date)).size
@@ -72,8 +71,8 @@ function InstrumentMetric({
 function MuscleFigure({ variant }: { variant: 'shoulders' | 'back' }) {
   return (
     <svg viewBox="0 0 120 220" style={{ width: 84, height: 160 }}>
-      <g stroke="rgba(175, 192, 226, 0.9)" strokeWidth="1.7" fill="none" strokeLinecap="round">
-        <circle cx="60" cy="18" r="10" fill="rgba(231, 238, 255, 0.45)" />
+      <g stroke="rgba(145, 109, 83, 0.88)" strokeWidth="1.7" fill="none" strokeLinecap="round">
+        <circle cx="60" cy="18" r="10" fill="rgba(251, 242, 230, 0.88)" />
         <path d="M45 42 C50 34, 70 34, 75 42" />
         <path d="M40 48 C46 40, 74 40, 80 48" />
         <path d="M48 48 L45 82 L53 122 L49 190" />
@@ -91,14 +90,14 @@ function MuscleFigure({ variant }: { variant: 'shoulders' | 'back' }) {
       </g>
 
       {variant === 'shoulders' ? (
-        <g fill="rgba(235, 107, 107, 0.78)" stroke="rgba(219, 91, 91, 0.92)" strokeWidth="1">
+        <g fill="rgba(176, 84, 43, 0.72)" stroke="rgba(141, 63, 31, 0.9)" strokeWidth="1">
           <path d="M40 46 C46 38, 54 40, 56 48 C52 58, 45 60, 39 54 Z" />
           <path d="M80 46 C74 38, 66 40, 64 48 C68 58, 75 60, 81 54 Z" />
           <path d="M48 50 C53 46, 57 46, 60 52 C57 62, 52 64, 47 58 Z" />
           <path d="M72 50 C67 46, 63 46, 60 52 C63 62, 68 64, 73 58 Z" />
         </g>
       ) : (
-        <g fill="rgba(235, 107, 107, 0.78)" stroke="rgba(219, 91, 91, 0.92)" strokeWidth="1">
+        <g fill="rgba(176, 84, 43, 0.72)" stroke="rgba(141, 63, 31, 0.9)" strokeWidth="1">
           <path d="M43 48 C50 42, 56 44, 58 54 L55 68 C48 67, 43 61, 40 54 Z" />
           <path d="M77 48 C70 42, 64 44, 62 54 L65 68 C72 67, 77 61, 80 54 Z" />
           <path d="M48 70 C52 64, 68 64, 72 70 L74 92 C68 102, 52 102, 46 92 Z" />
@@ -123,9 +122,9 @@ function MuscleCard({
     <div
       style={{
         borderRadius: 22,
-        border: active ? '2px solid rgba(91, 200, 226, 0.95)' : '1px solid rgba(202, 212, 230, 0.95)',
-        background: 'linear-gradient(180deg, rgba(248,250,255,0.96), rgba(238,242,251,0.92))',
-        boxShadow: active ? '0 10px 24px rgba(92, 193, 217, 0.16)' : 'none',
+        border: active ? '2px solid rgba(176,84,43,0.88)' : '1px solid rgba(177,145,118,0.82)',
+        background: 'linear-gradient(180deg, rgba(255,251,246,0.98), rgba(244,233,220,0.94))',
+        boxShadow: active ? '0 10px 24px rgba(176,84,43,0.12)' : 'none',
         padding: '14px 12px 12px',
         display: 'grid',
         justifyItems: 'center',
@@ -135,7 +134,7 @@ function MuscleCard({
       <MuscleFigure variant={variant} />
       <div
         style={{
-          color: '#1e2730',
+          color: '#37271e',
           fontSize: 13,
           fontWeight: 600,
           letterSpacing: '-0.01em',
@@ -156,10 +155,10 @@ function BionicBodyPanel() {
       <div
         style={{
           borderRadius: 24,
-          border: '1px solid rgba(255,255,255,0.12)',
+          border: '1px solid rgba(150,112,84,0.14)',
           background:
-            'linear-gradient(180deg, rgba(247, 242, 239, 0.98), rgba(233, 229, 227, 0.94))',
-          boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.45)',
+            'linear-gradient(180deg, rgba(255, 250, 243, 0.98), rgba(241, 230, 217, 0.94))',
+          boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.52)',
           padding: 18,
         }}
       >
@@ -174,7 +173,7 @@ function BionicBodyPanel() {
           <div>
             <div
               style={{
-                color: '#11161c',
+                color: '#34251d',
                 fontSize: 24,
                 fontWeight: 600,
                 letterSpacing: '-0.03em',
@@ -185,7 +184,7 @@ function BionicBodyPanel() {
             </div>
             <div
               style={{
-                color: 'rgba(32, 43, 57, 0.68)',
+                color: 'rgba(83, 61, 49, 0.72)',
                 fontSize: 11,
                 lineHeight: 1.45,
                 marginBottom: 14,
@@ -199,21 +198,21 @@ function BionicBodyPanel() {
                   key={label}
                   style={{
                     borderRadius: 999,
-                    border: '1px solid rgba(32,43,57,0.12)',
-                    color: '#27323d',
+                    border: '1px solid rgba(114,82,61,0.12)',
+                    color: '#49372c',
                     padding: '8px 11px',
                     fontSize: 11,
                     fontWeight: 500,
                     letterSpacing: '0.08em',
                     textTransform: 'uppercase',
-                    background: 'rgba(255,255,255,0.42)',
+                    background: 'rgba(255,248,239,0.72)',
                   }}
                 >
                   {label}
                 </span>
               ))}
             </div>
-            <div style={{ color: '#324150', fontSize: 14, lineHeight: 1.6 }}>
+            <div style={{ color: '#634d40', fontSize: 14, lineHeight: 1.6 }}>
               A web-native interpretation of the same reference language, scaled for the
               atlas rather than a phone mockup.
             </div>
@@ -400,8 +399,8 @@ export function Metrics() {
                   borderRadius: '50%',
                   display: 'grid',
                   placeItems: 'center',
-                  background: `conic-gradient(var(--accent) 0deg ${dialProgress * 320}deg, rgba(147,246,216,0.08) ${dialProgress * 320}deg 320deg, rgba(255,255,255,0.04) 320deg 360deg)`,
-                  boxShadow: 'inset 0 0 36px rgba(0,0,0,0.22)',
+                  background: `conic-gradient(var(--accent) 0deg ${dialProgress * 320}deg, rgba(196,155,111,0.2) ${dialProgress * 320}deg 320deg, rgba(114,82,61,0.06) 320deg 360deg)`,
+                  boxShadow: 'inset 0 0 36px rgba(114,82,61,0.12)',
                 }}
               >
                 <div
@@ -409,8 +408,8 @@ export function Metrics() {
                     width: 154,
                     height: 154,
                     borderRadius: '50%',
-                    background: 'rgba(6,11,17,0.95)',
-                    border: '1px solid rgba(147,246,216,0.12)',
+                    background: 'rgba(255,249,242,0.94)',
+                    border: '1px solid rgba(176,84,43,0.12)',
                     display: 'grid',
                     placeItems: 'center',
                     textAlign: 'center',
@@ -447,14 +446,14 @@ export function Metrics() {
                 <XAxis
                   dataKey="date"
                   stroke="rgba(182,197,195,0.25)"
-                  tick={{ fill: '#91a29f', fontSize: 11, fontFamily: 'var(--ui)' }}
+                  tick={{ fill: '#8f7767', fontSize: 11, fontFamily: 'var(--ui)' }}
                   tickLine={false}
                   axisLine={false}
                   interval={9}
                 />
                 <YAxis
                   stroke="rgba(182,197,195,0.25)"
-                  tick={{ fill: '#91a29f', fontSize: 11, fontFamily: 'var(--ui)' }}
+                  tick={{ fill: '#8f7767', fontSize: 11, fontFamily: 'var(--ui)' }}
                   tickLine={false}
                   axisLine={false}
                   allowDecimals={false}
@@ -462,10 +461,10 @@ export function Metrics() {
                 />
                 <Tooltip
                   contentStyle={{
-                    background: 'rgba(6,11,17,0.96)',
-                    border: '1px solid rgba(147,246,216,0.12)',
+                    background: 'rgba(255,249,242,0.96)',
+                    border: '1px solid rgba(176,84,43,0.12)',
                     borderRadius: 16,
-                    color: '#eff5ef',
+                    color: 'var(--text)',
                   }}
                 />
                 <Line
@@ -474,7 +473,7 @@ export function Metrics() {
                   stroke="var(--accent)"
                   strokeWidth={2.4}
                   dot={false}
-                  activeDot={{ r: 4, fill: '#93f6d8', strokeWidth: 0 }}
+                  activeDot={{ r: 4, fill: 'var(--accent-strong)', strokeWidth: 0 }}
                 />
               </LineChart>
             </ResponsiveContainer>
@@ -482,7 +481,27 @@ export function Metrics() {
         </section>
 
         <aside className="atlas-panel atlas-panel--soft atlas-sticky-rail" style={{ padding: 22 }}>
-          <BioSpecimen size="sm" label="Vitals field" style={{ margin: '0 auto 18px' }} />
+          {/* "Vitals field" header with teal dot — replaces BioSpecimen */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8,
+              marginBottom: 18,
+            }}
+          >
+            <span
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: '50%',
+                background: 'var(--accent)',
+                boxShadow: '0 0 10px rgba(176,84,43,0.3)',
+                flexShrink: 0,
+              }}
+            />
+            <span className="atlas-label">Vitals field</span>
+          </div>
 
           <div className="atlas-grid-strip" style={{ marginBottom: 18 }}>
             <InstrumentMetric label="Compounds" value={distinctCompounds} />

@@ -1,7 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
-import { BioSpecimen } from '@/components/layout/BioSpecimen'
 
 export function Auth() {
   const { signIn, signUp, loading } = useAuth()
@@ -92,7 +91,26 @@ export function Auth() {
                 </div>
               </div>
 
-              <BioSpecimen size="md" label="Access field" />
+              {/* Evidence indicator — replaces BioSpecimen on Auth page */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 8,
+                }}
+              >
+                <span
+                  style={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: '50%',
+                    background: 'var(--accent)',
+                    boxShadow: '0 0 12px rgba(176,84,43,0.28)',
+                    flexShrink: 0,
+                  }}
+                />
+                <span className="atlas-label">Access field</span>
+              </div>
             </div>
           </section>
 
@@ -150,7 +168,7 @@ export function Auth() {
               </div>
 
               {error ? (
-                <div className="atlas-readout" style={{ borderColor: 'rgba(241,116,109,0.2)' }}>
+                <div className="atlas-readout" style={{ borderColor: 'rgba(158,71,51,0.24)' }}>
                   <div className="atlas-kicker" style={{ color: 'var(--danger)', marginBottom: 8 }}>
                     Auth issue
                   </div>
