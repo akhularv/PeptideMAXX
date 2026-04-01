@@ -70,8 +70,9 @@ Deno.serve(async (req) => {
 
       await supabase.from('social_posts').update({ processed: true }).eq('id', post.id)
       processed++
-    } catch {
+    } catch (err) {
       // Leave processed=false so it retries next run
+      console.error(`process-posts: failed on post ${post.id}:`, err)
     }
   }
 
@@ -124,7 +125,14 @@ Return only the JSON array, no explanation.`,
   })
 
   const text = msg.content[0].type === 'text' ? msg.content[0].text.trim() : '[]'
-  const raw: Record<string, unknown>[] = JSON.parse(text)
+  let raw: Record<string, unknown>[]
+  try {
+    raw = JSON.parse(text)
+    if (!Array.isArray(raw)) throw new Error('Expected JSON array, got ' + typeof raw)
+  } catch (err) {
+    console.error('extractMentions: failed to parse Claude response:', err, 'raw text:', text.slice(0, 200))
+    return []
+  }
   return raw.filter((m) => m.compound_key && KNOWN_COMPOUNDS[String(m.compound_key)])
 }
 

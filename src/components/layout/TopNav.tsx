@@ -2,10 +2,10 @@ import { NavLink } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
 
 const NAV_LINKS = [
+  { to: '/app/metrics', label: 'Dashboard' },
   { to: '/app/library', label: 'Atlas' },
   { to: '/app/chat', label: 'Consult' },
   { to: '/app/log', label: 'Protocol' },
-  { to: '/app/metrics', label: 'Vitals' },
 ]
 
 export function TopNav() {

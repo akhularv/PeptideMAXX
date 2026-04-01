@@ -2,8 +2,10 @@ import { useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
 
+const hasSupabaseEnv = !!import.meta.env.VITE_SUPABASE_URL
+
 export function Auth() {
-  const { signIn, signUp, loading } = useAuth()
+  const { signIn, signUp, loading, confirmationPending } = useAuth()
   const [mode, setMode] = useState<'signin' | 'signup'>('signin')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -167,6 +169,16 @@ export function Auth() {
                 />
               </div>
 
+              {confirmationPending ? (
+                <div className="atlas-readout" style={{ borderColor: 'rgba(125,240,200,0.24)' }}>
+                  <div className="atlas-kicker" style={{ color: 'var(--accent)', marginBottom: 8 }}>
+                    Check your email
+                  </div>
+                  <p className="atlas-caption">
+                    A confirmation link has been sent. Click it to activate your account, then sign in.
+                  </p>
+                </div>
+              ) : null}
               {error ? (
                 <div className="atlas-readout" style={{ borderColor: 'rgba(158,71,51,0.24)' }}>
                   <div className="atlas-kicker" style={{ color: 'var(--danger)', marginBottom: 8 }}>
@@ -203,9 +215,11 @@ export function Auth() {
                 {mode === 'signin' ? 'Need an account' : 'Already have access'}
               </button>
 
-              <Link to="/app/library" className="atlas-button-secondary">
-                Preview app
-              </Link>
+              {!hasSupabaseEnv && (
+                <Link to="/app/library" className="atlas-button-secondary">
+                  Preview app
+                </Link>
+              )}
             </div>
           </section>
         </div>

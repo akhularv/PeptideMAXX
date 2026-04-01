@@ -15,6 +15,7 @@ import type { UserMetrics } from '@/types/user'
 export function useMetrics() {
   const { session, metrics, setMetrics } = useUserStore()
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     if (!session?.user) return
@@ -24,8 +25,9 @@ export function useMetrics() {
       .select('*')
       .eq('user_id', session.user.id)
       .maybeSingle()
-      .then(({ data }) => {
+      .then(({ data, error: err }) => {
         setLoading(false)
+        if (err) { setError(err.message); return }
         if (data) setMetrics(data as UserMetrics)
       })
   }, [session?.user?.id])
@@ -33,14 +35,21 @@ export function useMetrics() {
   const saveMetrics = async (data: Partial<UserMetrics>) => {
     if (!session?.user) return
     setLoading(true)
-    const { data: upserted } = await supabase
-      .from('user_metrics')
-      .upsert({ ...data, user_id: session.user.id }, { onConflict: 'user_id' })
-      .select()
-      .single()
-    setLoading(false)
-    if (upserted) setMetrics(upserted as UserMetrics)
+    setError(null)
+    try {
+      const { data: upserted, error: err } = await supabase
+        .from('user_metrics')
+        .upsert({ ...data, user_id: session.user.id }, { onConflict: 'user_id' })
+        .select()
+        .single()
+      if (err) throw err
+      if (upserted) setMetrics(upserted as UserMetrics)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to save metrics')
+    } finally {
+      setLoading(false)
+    }
   }
 
-  return { metrics, saveMetrics, loading }
+  return { metrics, saveMetrics, loading, error }
 }

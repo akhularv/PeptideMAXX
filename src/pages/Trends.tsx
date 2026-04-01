@@ -300,6 +300,7 @@ export function Trends() {
   const [trends, setTrends] = useState<TrendSignal[]>([])
   const [sources, setSources] = useState<TrackedSource[]>([])
   const [loading, setLoading] = useState(true)
+  const [fetchError, setFetchError] = useState<string | null>(null)
   const [platform, setPlatform] = useState<'all' | Platform>('all')
   const [compoundFilter, setCompoundFilter] = useState<string>('all')
 
@@ -312,6 +313,9 @@ export function Trends() {
       setPosts(p)
       setTrends(t)
       setSources(s)
+      setLoading(false)
+    }).catch((err) => {
+      setFetchError(err instanceof Error ? err.message : 'Failed to load intelligence feed')
       setLoading(false)
     })
   }, [])
@@ -431,6 +435,12 @@ export function Trends() {
           {loading && (
             <div className="atlas-panel" style={{ padding: 32, textAlign: 'center' }}>
               <p className="atlas-caption">Loading intelligence feed…</p>
+            </div>
+          )}
+          {fetchError && (
+            <div className="atlas-panel" style={{ padding: 32, textAlign: 'center', borderColor: 'rgba(232,88,88,0.24)' }}>
+              <div className="atlas-kicker" style={{ color: 'var(--danger)', marginBottom: 8 }}>Feed error</div>
+              <p className="atlas-caption" style={{ color: 'var(--danger)' }}>{fetchError}</p>
             </div>
           )}
           {!loading && filtered.length === 0 && (

@@ -25,7 +25,7 @@ export function useLog() {
     if (!session?.user) return
     setLoading(true)
     supabase
-      .from('log_entries')
+      .from('logs')
       .select('*')
       .eq('user_id', session.user.id)
       .order('date', { ascending: false })
@@ -55,7 +55,7 @@ export function useLog() {
 
     try {
       const { data, error: err } = await supabase
-        .from('log_entries')
+        .from('logs')
         .insert({ ...entry, user_id: session.user.id })
         .select()
         .single()
@@ -75,7 +75,7 @@ export function useLog() {
     // Optimistic removal — no rollback needed for delete failures in MVP
     removeLog(id)
     try {
-      const { error: err } = await supabase.from('log_entries').delete().eq('id', id)
+      const { error: err } = await supabase.from('logs').delete().eq('id', id)
       if (err) throw err
     } catch (err) {
       logger.error('Failed to delete entry', err)

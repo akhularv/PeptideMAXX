@@ -16,6 +16,7 @@ import { useUserStore } from '@/store/useUserStore'
 export function useAuth() {
   const { session, setSession } = useUserStore()
   const [loading, setLoading] = useState(false)
+  const [confirmationPending, setConfirmationPending] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export function useAuth() {
     try {
       const { error } = await supabase.auth.signInWithPassword({ email, password })
       if (error) throw error
-      navigate('/app/library')
+      navigate('/app/metrics')
     } finally {
       setLoading(false)
     }
@@ -47,10 +48,17 @@ export function useAuth() {
 
   const signUp = async (email: string, password: string) => {
     setLoading(true)
+    setConfirmationPending(false)
     try {
-      const { error } = await supabase.auth.signUp({ email, password })
+      const { data, error } = await supabase.auth.signUp({ email, password })
       if (error) throw error
-      navigate('/app/library')
+      // When email confirmation is required, session is null even on success.
+      // Do not navigate — show a "check your email" prompt instead.
+      if (!data.session) {
+        setConfirmationPending(true)
+        return
+      }
+      navigate('/app/metrics')
     } finally {
       setLoading(false)
     }
@@ -62,5 +70,5 @@ export function useAuth() {
     navigate('/')
   }
 
-  return { session, signIn, signUp, signOut, loading }
+  return { session, signIn, signUp, signOut, loading, confirmationPending }
 }

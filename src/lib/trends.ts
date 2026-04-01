@@ -81,9 +81,13 @@ export async function fetchTrendPosts(options: {
 export async function fetchTrendSignals(): Promise<TrendSignal[]> {
   if (!hasSupabaseEnv) return MOCK_TRENDS
 
+  // Only read from the most recent 13-hour window to avoid stale rows
+  // accumulating from prior scrape cycles (process-posts uses INSERT not UPSERT)
+  const cutoff = new Date(Date.now() - 13 * 3600_000).toISOString()
   const { data, error } = await supabase
     .from('trend_signals')
     .select('compound_key, mention_count, total_views, trending_up')
+    .gte('computed_at', cutoff)
     .order('mention_count', { ascending: false })
     .limit(10)
 
